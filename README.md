@@ -21,6 +21,14 @@
 **腳本安裝**
 
 
+※ 注意腳本內的 Hadoop Version
+
+```
+sudo chmod u+x ./sqoop_single_setup.sh
+
+./sqoop_single_setup.sh
+
+```
 
 
 
