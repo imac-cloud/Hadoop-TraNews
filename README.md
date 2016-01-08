@@ -1,20 +1,10 @@
 # 大台灣旅遊網熱門景點分析
 
-本項目針對大台灣旅遊網站新聞資訊進行分析，找出內容中最常出現的景點次數，並透過 Apache sqoop 與 Mysql 關聯式資料庫進行溝通
+本項目針對大台灣旅遊網站新聞資訊進行分析，找出內容中最常出現的景點次數，並透過 Apache sqoop 來與 Mysql 關聯式資料庫進行溝通相互傳遞資料
 
-**
-注意事項
-**
+**注意事項**
 
 * DistributedCache.addCacheFile(new URI("/user/ubuntu/viewpoint/part-m-00000"),job.getConfiguration()); //字串為HDFS上的景點資料 
-
-
-
-
-
-
-
-
 
 
 
@@ -22,13 +12,10 @@
 
 
 
-
-
-
 **軟體版本**
+
 * hadoop : 2.6.0
-* 
-sqoop : 1.4.5
+* sqoop : 1.4.5
 
 
 **腳本安裝**
@@ -42,11 +29,11 @@ sqoop : 1.4.5
 **讀取 Local端 mysql 的所有表格**
 
 
-######  information_schema ： Local 端 的database
+information_schema ： Local 端 的database
 
-###### root :  帳號
+root :  帳號
 
-###### mysql ：密碼
+mysql ：密碼
 ```
 /opt/sqoop/bin/sqoop list-tables --connect jdbc:mysql://127.0.0.1/information_schema --username root --password mysql
 ```
@@ -54,10 +41,10 @@ sqoop : 1.4.5
 
 
 
-** mysql -> sqoop -> hdfs (Local端)**
+**mysql -> sqoop -> hdfs (Local端)**
  
- ######TABLES : Local 端 的database
- ###### m 1  ： 限制 map 數量為 1 
+ TABLES : Local 端 的database
+ m 1  ： 限制 map 數量為 1 
  ```
  /opt/sqoop/bin/sqoop import --connect jdbc:mysql://127.0.0.1/information_schema --username root --password mysql --table TABLES -m 1 
  ``` 
@@ -65,10 +52,10 @@ sqoop : 1.4.5
 
 
       
-      ** mysql -> sqoop -> hdfs (對外IP)**
+      **mysql -> sqoop -> hdfs (對外IP)**
 
 
-      ###### 首先需先給予 IP 資料庫權限
+      首先需先給予 IP 資料庫權限
 
       ```
       mysql > create user '<user_name>'@'<ip>' identified by '<password>';
@@ -78,7 +65,7 @@ sqoop : 1.4.5
       mysql >  flush privileges ;
       ```
 
-      ###### 執行指令
+      執行指令
 
       ```
       /opt/sqoop/bin/sqoop import --connect jdbc:mysql://<ip>/<database_name> --username <user_name> --password <password> --table <table_name> -m 1
@@ -158,3 +145,4 @@ sqoop : 1.4.5
 	   sqoop export --connect "jdbc:mysql://<ip>/<database>?useUnicode=true&characterEncoding=utf-8"  --username admin --password admin --table <table_name> --export-dir <HDFS檔案路徑> --columns name,value
 
 	   ```
+
