@@ -53,9 +53,9 @@
 
 ** mysql -> sqoop -> hdfs (Local端)**
  
- ###### TABLES : Local 端 的database
+###### TABLES : Local 端 的database
  
- ###### -m 1  ： 限制 map 數量為 1 
+###### -m 1  ： 限制 map 數量為 1 
  ```
  /opt/sqoop/bin/sqoop import --connect jdbc:mysql://127.0.0.1/information_schema --username root --password mysql --table TABLES -m 1 
  ``
@@ -64,7 +64,7 @@
 ** mysql -> sqoop -> hdfs (對外IP)**
       
       
-     ###### 首先需先給予 IP 資料庫權限
+###### 首先需先給予 IP 資料庫權限
       
 
       ```
