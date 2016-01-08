@@ -2,7 +2,7 @@
 
 本項目針對大台灣旅遊網站新聞資訊進行分析，找出內容中最常出現的景點次數，並透過 Apache sqoop 與 Mysql 關聯式資料庫進行溝通
 
-** 注意事項 **
+**注意事項**
 
 * DistributedCache.addCacheFile(new URI("/user/ubuntu/viewpoint/part-m-00000"),job.getConfiguration()); //字串為HDFS上的景點資料 
 
