@@ -25,8 +25,7 @@
 
 **軟體版本**
 * hadoop : 2.6.0
-* 
-sqoop : 1.4.5
+* sqoop : 1.4.5
 
 
 **腳本安裝**
@@ -54,19 +53,19 @@ sqoop : 1.4.5
 
 ** mysql -> sqoop -> hdfs (Local端)**
  
- ######TABLES : Local 端 的database
- ###### m 1  ： 限制 map 數量為 1 
+ ###### TABLES : Local 端 的database
+ 
+ ###### -m 1  ： 限制 map 數量為 1 
  ```
  /opt/sqoop/bin/sqoop import --connect jdbc:mysql://127.0.0.1/information_schema --username root --password mysql --table TABLES -m 1 
- ``` 
-
-
-
+ ``
+ 
+ 
+** mysql -> sqoop -> hdfs (對外IP)**
       
-      ** mysql -> sqoop -> hdfs (對外IP)**
-
-
-      ###### 首先需先給予 IP 資料庫權限
+      
+     ###### 首先需先給予 IP 資料庫權限
+      
 
       ```
       mysql > create user '<user_name>'@'<ip>' identified by '<password>';
@@ -82,23 +81,20 @@ sqoop : 1.4.5
       /opt/sqoop/bin/sqoop import --connect jdbc:mysql://<ip>/<database_name> --username <user_name> --password <password> --table <table_name> -m 1
       ```
 
-
-
       **hdfs -> sqoop -> mysql (Local端)**
-
+      
       ```
       /opt/sqoop/bin/sqoop export --connect jdbc:mysql://127.0.0.1/mysql --username root --password mysql --table plugin --export-dir /user/hadoop/kind
       ```
 
       **Sqoop 字串包含查詢**
-
+      
       ※ time 為資料庫時間欄位
 
       時間欄位包含 2015-04 
       ```
       sqoop import --connect jdbc:mysql://<ip>/<database> --username admin --password admin --table news  --where 'locate("2015-04",time)'>0
       ```
-
       只顯示時間欄位
 
       ```
@@ -124,9 +120,8 @@ sqoop : 1.4.5
       sqoop import --connect jdbc:mysql://<ip>/<database> --username admin --password admin --table news -m 1
       ```
 
-
       # 測試執行
-
+      
       ###Hadoop
 
       news : Sqoop匯入的資料
