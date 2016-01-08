@@ -29,11 +29,11 @@
 **讀取 Local端 mysql 的所有表格**
 
 
-######  information_schema ： Local 端 的database
+information_schema ： Local 端 的database
 
-###### root :  帳號
+root :  帳號
 
-###### mysql ：密碼
+mysql ：密碼
 ```
 /opt/sqoop/bin/sqoop list-tables --connect jdbc:mysql://127.0.0.1/information_schema --username root --password mysql
 ```
@@ -43,8 +43,8 @@
 
 **mysql -> sqoop -> hdfs (Local端)**
  
-######TABLES : Local 端 的database
-###### m 1  ： 限制 map 數量為 1 
+TABLES : Local 端 的database
+m 1  ： 限制 map 數量為 1 
 ```
 /opt/sqoop/bin/sqoop import --connect jdbc:mysql://127.0.0.1/information_schema --username root --password mysql --table TABLES -m 1 
 ``` 
@@ -55,7 +55,7 @@
 **mysql -> sqoop -> hdfs (對外IP)**
 
 
-###### 首先需先給予 IP 資料庫權限
+首先需先給予 IP 資料庫權限
 
 ```
 mysql > create user '<user_name>'@'<ip>' identified by '<password>';
@@ -65,7 +65,7 @@ mysql >  grant all on *.* to '<user_name>'@'<ip>';
 mysql >  flush privileges ;
 ```
 
-###### 執行指令
+執行指令
 
 ```
 /opt/sqoop/bin/sqoop import --connect jdbc:mysql://<ip>/<database_name> --username <user_name> --password <password> --table <table_name> -m 1
