@@ -16,7 +16,8 @@ public class WordCount {
 	    Configuration conf = new Configuration();
 	    conf.setInt("mapreduce.job.reduces", 1);
 		Job job = Job.getInstance(conf, "WordCount");
-		DistributedCache.addCacheFile(new URI("/user/ubuntu/viewpoint/part-m-00000"),job.getConfiguration());
+//		DistributedCache.addCacheFile(new URI("/user/ubuntu/viewpoint/part-m-00000"),job.getConfiguration());
+		job.addCacheFile(new URI("/user/ubuntu/viewpoint/part-m-00000"));
 //		DistributedCache.addCacheFile(new URI("hdfs://hadoop:9000/user/hadoop/viewpoint/part-m-00001"),job.getConfiguration());
 //		DistributedCache.addCacheFile(new URI("hdfs://hadoop:9000/user/hadoop/viewpoint/part-m-00002"),job.getConfiguration());
 //		DistributedCache.addCacheFile(new URI("hdfs://hadoop:9000/user/hadoop/viewpoint/part-m-00003"),job.getConfiguration());
